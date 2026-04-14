@@ -155,6 +155,8 @@ function populateNavBar(condition){
   });
 }
 populateNavBar();
+// reapply sorting if applicable
+if (window.reapplySort) window.reapplySort();
 // ------------------------------------------
 
 
@@ -742,6 +744,7 @@ function initializeFilterModal() {
     const filteredWithMarkers = attachMarkers(filteredData);
 
     populateNavBar(filteredWithMarkers);
+    if (window.reapplySort) window.reapplySort(); // reapply sorting if applicable
     updateFilterButtonState();
     closeFilterModal();
   });
