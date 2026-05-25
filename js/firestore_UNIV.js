@@ -80,10 +80,14 @@ const SECRETS = await SECRETS_RES.json();
 
 export const FIREBASE_CONFIG = SECRETS.FIREBASE_CONFIG;
 
-var app = getApps().length > 0 ? getApps()[0] : initializeApp(FIREBASE_CONFIG);
-export const DB = getFirestore({
-  app,
-});
+var app =
+  getApps().length > 0
+    ? getApps()[0]
+    : initializeApp({
+        ...FIREBASE_CONFIG,
+        tabManager: persistentMultipleTabManager(),
+      });
+export const DB = getFirestore(app);
 
 var collection_reference = null;
 var rule_reference = null;
